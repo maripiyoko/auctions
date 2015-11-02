@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   namespace :my do
-    resources :goods
+    resources :products
     resources :auctions
   end
 end

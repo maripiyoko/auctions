@@ -1,0 +1,11 @@
+%h2 私の商品一覧
+
+%table.table
+  %thead
+    %tr
+      %th 商品名
+      %th 説明
+  %tbody
+    = render @products
+
+= paginate @products
