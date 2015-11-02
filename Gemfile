@@ -15,9 +15,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'squeel'
 gem 'haml-rails'
-gem 'twitter-bootswatch-rails'
-gem 'twitter-bootswatch-rails-helpers'
-gem 'less-rails'
+gem 'bootstrap-sass'
 
 gem 'simple_form'
 
