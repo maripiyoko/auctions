@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Auctions
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    = render 'layouts/header'
+
+    .container-fluid
+      .row
+        .col-sm-12
+          = render 'layouts/message'
+      .row
+        .col-sm-2
+          = render 'layouts/my_menu'
+        .col-sm-10
+          = yield

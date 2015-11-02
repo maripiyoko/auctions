@@ -1,0 +1,4 @@
+%tr
+  %td= link_to product.name, [ :my, product ]
+  %td= product.short_description
+  %td= link_to '削除', [ :my, product ], method: :delete, class: "btn btn-danger pull-right", data: { confirm: "本当に削除しますか？" }

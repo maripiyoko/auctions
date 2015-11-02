@@ -1,0 +1,8 @@
+= simple_form_for [ :my, @product ] do |f|
+
+  .form-inputs
+    = f.input :name, label: '商品名', autofocus: true
+    = f.input :description, label: '説明'
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

@@ -1,0 +1,20 @@
+.row
+  .col-sm-9
+    %h3 私の商品一覧
+  .col-sm-3
+    = link_to new_my_product_path, class: "btn btn-default pull-right" do
+      %i.glyphicon.glyphicon-plus
+      %span 新しい商品を登録
+
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %tr
+          %th 商品名
+          %th 説明
+          %th
+      %tbody
+        = render @products
+
+    = paginate @products
