@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'auctions/index'
+
+  get 'auctions/show'
+
   devise_for :users
   root 'auctions#index'
 
