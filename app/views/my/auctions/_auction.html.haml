@@ -1,0 +1,4 @@
+%tr
+  %td= link_to auction.name, [ :my, auction ]
+  %td= auction.short_description
+  %td= link_to '削除', [ :my, auction ], method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"

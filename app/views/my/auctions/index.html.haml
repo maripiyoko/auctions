@@ -1,0 +1,20 @@
+.row
+  .col-sm-9
+    %h3 私のオークション出品一覧
+  .col-sm-3
+    = link_to new_my_auction_path, class: "btn btn-default pull-right" do
+      %i.glyphicon.glyphicon-plus
+      %span 新しい出品を登録
+
+.row
+  .col-sm-12
+    %table.table
+      %thead
+        %tr
+          %th 名前
+          %th 説明
+          %th
+      %tbody
+        = render @auctions
+
+    = paginate @auctions

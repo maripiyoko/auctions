@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :products
-  has_many :auctions, through: :products
+  has_many :auctions
 end
