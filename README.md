@@ -2,7 +2,7 @@
 
 ### Rails 練習用 ヤフオク コピーアプリ
 
-- [Heroku deployed](https://copy-dropbox.herokuapp.com/)
+- [Heroku deployed](https://copy-auctions.herokuapp.com/)
 
 #### Ruby version
 
