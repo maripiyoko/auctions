@@ -16,7 +16,7 @@
 
 .row
   .col-sm-6.col-sm-push-3
-    = link_to '#', class: "btn btn-large btn-block btn-success" do
+    = link_to new_auction_bid_path(@auction), class: "btn btn-large btn-block btn-success", remote: true do
       %i.glyphicon.glyphicon-jpy
       %span 入札する
 
@@ -31,4 +31,6 @@
 %ul.list-group
   - @auction.bids.each do |bid|
     %li.list-group-item
-      = "#${bid.usesr.name} さんが #{bid.price} 円で入札しました。"
+      = "#{bid.user.name} さんが #{bid.price} 円で入札しました。"
+
+= render 'shared/modal'
