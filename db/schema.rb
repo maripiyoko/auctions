@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102051234) do
+ActiveRecord::Schema.define(version: 20151106003055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 20151102051234) do
 
   add_index "auctions", ["product_id"], name: "index_auctions_on_product_id", using: :btree
   add_index "auctions", ["user_id"], name: "index_auctions_on_user_id", using: :btree
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "auction_id"
+    t.integer  "price",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "bids", ["auction_id"], name: "index_bids_on_auction_id", using: :btree
+  add_index "bids", ["user_id", "auction_id"], name: "index_bids_on_user_id_and_auction_id", unique: true, using: :btree
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.string   "name",        null: false
@@ -61,5 +73,7 @@ ActiveRecord::Schema.define(version: 20151102051234) do
 
   add_foreign_key "auctions", "products"
   add_foreign_key "auctions", "users"
+  add_foreign_key "bids", "auctions"
+  add_foreign_key "bids", "users"
   add_foreign_key "products", "users"
 end
