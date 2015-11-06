@@ -1,0 +1,11 @@
+= simple_form_for [ :my, @auction ] do |f|
+
+  .form-inputs
+    = f.input :product_id, label: '商品マスタ', collection: current_user.products
+    = f.input :name, label: '名前'
+    = f.input :description, label: '説明'
+    = f.input :min_price, label: '最低入札価格'
+    = f.input :deadline_date, label: 'オークション終了日時'
+
+  .form-actions
+    = f.button :submit, class: "btn btn-primary"

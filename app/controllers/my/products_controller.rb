@@ -2,7 +2,12 @@ class My::ProductsController < My::ApplicationController
   before_action :set_product, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @products = current_user.products.order(:updated_at).page params[:page]
+    respond_to do |format|
+      format.html do
+        @products = current_user.products.order(:updated_at).page params[:page]
+      end
+      format.json { render json: current_user.products }
+    end
   end
 
   def new
@@ -10,7 +15,10 @@ class My::ProductsController < My::ApplicationController
   end
 
   def show
-    render :edit
+    respond_to do |format|
+      format.html { render :edit }
+      format.json { render json: @product }
+    end
   end
 
   def create

@@ -1,0 +1,2 @@
+module My::AuctionsHelper
+end

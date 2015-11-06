@@ -1,2 +1,42 @@
-%h1 Auctions#show
-%p Find me in app/views/auctions/show.html.haml
+.panel.panel-default
+  .panel-heading.position-parent
+    .panel-title= "#{@auction.name}"
+    - if user_signed_in? && current_user == @auction.user
+      .panel-position-right
+        = link_to [ :my, @auction ], class: "btn btn-warning btn-sm" do
+          %i.glyphicon.glyphicon-pencil
+          %span 出品情報を編集
+
+
+  .panel-body
+    = simple_format(@auction.description)
+
+  .panel-footer
+    = "オークション締切日：#{@auction.deadline_date}"
+
+- unless @auction.closed
+  .row
+    .col-sm-6.col-sm-push-3
+      - if @auction.bidder?(current_user)
+        = link_to auction_bid_path(@auction), method: :delete, class: "btn btn-large- btn-block btn-danger" do
+          %i.glyphicon.glyphicon-remove-sign
+          %span 入札を取り消す
+      - else
+        = link_to new_auction_bid_path(@auction), class: "btn btn-large btn-block btn-success", remote: true do
+          %i.glyphicon.glyphicon-plus-sign
+          %span 入札する
+
+%h3 現在までの入札状況
+
+.note.text-info
+  - if @auction.bids.empty?
+    まだ入札はありません。
+  - else
+    ="#{@auction.bids.count} 件の入札がありました。"
+
+%ul.list-group
+  - @auction.bids.each do |bid|
+    %li.list-group-item
+      = "#{bid.user.name} さんが #{bid.price} 円で入札しました。"
+
+= render 'shared/modal'
