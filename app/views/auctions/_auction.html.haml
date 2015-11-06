@@ -3,4 +3,5 @@
   %td= auction.user.name
   %td= auction.deadline_date
   %td= "#{auction.min_price} 円"
-  %td --
+  %td= "#{auction.bids.count} 件"
+  %td= "#{auction.max_bid_price} 円"

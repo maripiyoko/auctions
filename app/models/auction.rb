@@ -39,6 +39,15 @@ class Auction < ActiveRecord::Base
     false
   end
 
+  def max_bid_price
+    max_bid = self.bids.max_by { |b| b.price }
+    if max_bid.present?
+      max_bid.price
+    else
+      0
+    end
+  end
+
   def self.close_all_over_deadline_auctions!
     self.over_deadline_date.open.each do |auction|
       auction.close!
