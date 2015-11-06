@@ -1,2 +1,16 @@
-%h1 Auctions#show
-%p Find me in app/views/auctions/show.html.haml
+.panel.panel-default
+  .panel-heading.position-parent
+    .panel-title= "#{@auction.name}"
+    - if user_signed_in? && current_user == @auction.user
+      .panel-position-right.btn.btn-default.btn-sm
+        = link_to [ :my, @auction ] do
+          %i.glyphicon.glyphicon-pencil
+          %span 出品情報を編集
+
+
+  .panel-body
+    = simple_format(@auction.description)
+
+  .panel-footer
+    = "オークション締切日：#{@auction.deadline_date}"
+

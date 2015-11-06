@@ -1,6 +1,6 @@
 %tr
-  %td= auction.name
+  %td= link_to auction.name, auction
   %td= auction.user.name
   %td= auction.deadline_date
-  %td= auction.min_price
+  %td= "#{auction.min_price} 円"
   %td --
