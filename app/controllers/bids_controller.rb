@@ -25,6 +25,12 @@ class BidsController < ApplicationController
     end
   end
 
+  def destroy
+    @bid = current_user.bids.find_by!(auction: @auction)
+    @bid.destroy
+    redirect_to @auction, notice: '入札を取り消しました。'
+  end
+
   private
 
     def set_auction

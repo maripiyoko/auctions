@@ -9,4 +9,9 @@ class Auction < ActiveRecord::Base
   def short_description
     self.description.each_line.first
   end
+
+  def bidder?(user)
+    self.bids.find_by(user: user).present?
+  end
+
 end

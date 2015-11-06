@@ -6,7 +6,7 @@
   .note.text-danger
     = "最低入札価格は #{@auction.min_price} 円です。"
 
-  = simple_form_for [ @auction, @bid ] do |f|
+  = simple_form_for [ @auction, @bid ], url: auction_bid_path do |f|
     = f.input :price, label: '入札金額'
     = f.button :submit, class: "btn btn-primary"
 

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   root 'auctions#index'
 
   resources :auctions, only: [ :show, :index ] do
-    resources :bids
+    resource :bid, only: [ :new, :create, :destroy ]
     resources :comments
   end
 
