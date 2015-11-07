@@ -1,0 +1,8 @@
+= simple_form_for [ :my, @bid, @comment ], url: my_bid_comment_path do |f|
+
+  .form-inputs
+    = f.input :evaluation, as: :radio_buttons, label: '評価'
+    = f.input :comment, label: 'コメント'
+
+  .form-submits
+    = f.button :submit, class: "btn btn-primary"

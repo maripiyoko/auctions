@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :bid
   belongs_to :user
 
-  validates_presence_of :user_id, :auction_id, :evaluation
+  validates_presence_of :user_id, :bid_id, :evaluation
 
   EVALUATIONS = %w(
     悪い
