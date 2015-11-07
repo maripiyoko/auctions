@@ -2,6 +2,7 @@ class Comment < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :bid
+  belongs_to :user
 
   validates_presence_of :user_id, :auction_id, :evaluation
 
