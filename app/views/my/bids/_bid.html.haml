@@ -1,0 +1,11 @@
+%tr
+  %td= bid.auction.name
+  %td= "#{bid.price} 円"
+  - if bid.comment.nil?
+    %td
+    %td= link_to 'コメントを書き込む', new_my_bid_comment_path(bid)
+  - else
+    %td= bid.comment.created_at
+    %td
+      = link_to 'コメントの修正', edit_my_bid_comment_path(bid), class: "btn btn-default btn-sm"
+      = link_to '削除', my_bid_comment_path(bid), method: :delete, class: "btn btn-danger btn-sm"

@@ -1,10 +1,10 @@
 .row
   .col-sm-10
-    %h2 開催中のオークション一覧
+    %h2 終了したオークション一覧
   .col-sm-2
     .btn-group{ role: "group" }
-      = link_to '開催中', url_for(state: ''), class: "btn btn-success active"
-      = link_to '終了済', url_for(state: 'closed'), class: "btn btn-default"
+      = link_to '開催中', url_for(state: ''), class: "btn btn-success"
+      = link_to '終了済', url_for(state: 'closed'), class: "btn btn-default active"
 .row
   .col-sm-12
     %table.table
@@ -14,8 +14,8 @@
           %th 出品者
           %th オークション締切日
           %th 最低入札価格
-          %th 現在の入札数
-          %th 現在の最高入札金額
+          %th 最終入札数
+          %th 落札金額
       %tbody
         = render @auctions
 

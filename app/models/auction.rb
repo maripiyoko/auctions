@@ -18,17 +18,17 @@ class Auction < ActiveRecord::Base
   scope :over_deadline_date, -> { where("deadline_date < ?", Time.now) }
 
   scope :open, -> { where(closed: false).order(deadline_date: :desc) }
-  scope :not_open, -> { where(closed: true).order(deadline_date: :desc) }
+  scope :closed, -> { where(closed: true).order(deadline_date: :desc) }
 
   # オークションを終了する（締め処理）
   def close!
     if self.deadline_date < Time.now
-      if !self.closed && self.successful_bid.nil?
+      unless self.closed
         # オークションはまだ終了していない。締め処理開始
         max_bid = self.bids.max_by { |b| b.price }
         if max_bid.present? && max_bid.price > self.min_price
           # 最高額の入札を確定
-          self.successful_bid = max_bid
+          self.successful_bid_id = max_bid.id
         end
       end
       # オークション終了

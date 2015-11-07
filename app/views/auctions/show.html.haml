@@ -14,7 +14,18 @@
   .panel-footer
     = "オークション締切日：#{@auction.deadline_date}"
 
-- unless @auction.closed
+- if @auction.closed
+  .row
+    .col-sm-12
+      %h3 落札者からの評価
+      - if @auction.successful_bid.present? && @auction.successful_bid.comment.present?
+        .well
+          .evaluation= "評価：#{@auction.successful_bid.comment.evaluation}"
+          .note= @auction.successful_bid.comment.comment
+      - else
+        .well まだ評価されていません。
+
+- else
   .row
     .col-sm-6.col-sm-push-3
       - if @auction.bidder?(current_user)

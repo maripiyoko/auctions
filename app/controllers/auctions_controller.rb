@@ -3,10 +3,9 @@ class AuctionsController < ApplicationController
 
   def index
     if !params[:state].nil? && params[:state] == 'closed'
-      @index_state = "終了した"
-      @auctions = Auction.not_open.page params[:page]
+      @auctions = Auction.closed.page params[:page]
+      render :index_closed
     else
-      @index_state = "開催中の"
       @auctions = Auction.open.page params[:page]
     end
   end
