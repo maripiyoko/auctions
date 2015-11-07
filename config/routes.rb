@@ -4,11 +4,11 @@ Rails.application.routes.draw do
 
   resources :auctions, only: [ :show, :index ] do
     resource :bid, only: [ :new, :create, :destroy ]
-    resources :comments
   end
 
   namespace :my do
     resources :products
     resources :auctions
+    resources :comments
   end
 end
