@@ -18,7 +18,7 @@ class Auction < ActiveRecord::Base
   scope :over_deadline_date, -> { where("deadline_date < ?", Time.now) }
 
   scope :open, -> { where(closed: false).order(deadline_date: :desc) }
-  scope :not_open, -> { where(closed: true).order(deadline_date: :desc) }
+  scope :closed, -> { where(closed: true).order(deadline_date: :desc) }
 
   # オークションを終了する（締め処理）
   def close!
