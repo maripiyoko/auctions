@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   namespace :my do
     resources :products
     resources :auctions
-    resources :comments
+    resources :bids, only: [:index] do
+      resource :comment
+    end
   end
 end
