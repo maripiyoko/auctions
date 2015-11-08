@@ -4,7 +4,10 @@
       %i.glyphicon.glyphicon-ok
       %span 終了
     - else
-      %span 開催中
+      = link_to auction, title: '開催中のオークション詳細ページへ移動' do
+        %i.glyphicon.glyphicon-share-alt
+        %span 開催中
+
   %td= link_to auction.name, [ :my, auction ]
   %td= auction.short_description
   %td

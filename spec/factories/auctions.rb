@@ -1,11 +1,11 @@
 FactoryGirl.define do
   factory :auction do
-    name "MyString"
-description "MyText"
-user nil
-product nil
-min_price 1
-deadline_date "2015-11-02"
+    name { Faker::Lorem::sentence }
+    description { Faker::Lorem::paragraph }
+    association :user
+    association :product
+    min_price { Faker::Number::number(4) }
+    deadline_date { Faker::Date::between(2.days.ago, Date.today) }
   end
 
 end

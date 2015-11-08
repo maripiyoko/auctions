@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :comment do
-    user nil
-auction nil
-evaluation "MyString"
-comment "MyText"
+    association :user
+    association :bid
+    evaluation "普通"
+    comment { Faker::Lorem::paragraph }
   end
 
 end

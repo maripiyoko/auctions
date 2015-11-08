@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107015016) do
+ActiveRecord::Schema.define(version: 20151107234209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20151107015016) do
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "min_price"
-    t.date     "deadline_date"
+    t.datetime "deadline_date"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "successful_bid_id"

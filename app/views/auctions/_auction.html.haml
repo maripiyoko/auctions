@@ -1,7 +1,7 @@
 %tr
   %td= link_to auction.name, auction
   %td= auction.user.name
-  %td= auction.deadline_date
+  %td= auction.deadline_date.to_s(:datetime)
   %td= "#{auction.min_price} 円"
   %td= "#{auction.bids.count} 件"
   %td= "#{auction.max_bid_price} 円"
