@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Auction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "should have a valid factory" do
+    expect(FactoryGirl.create(:auction)).to be_valid
+  end
+
 end

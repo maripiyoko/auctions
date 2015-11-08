@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :bid do
-    user nil
-auction nil
-price 1
+    association :user
+    association :auction
+    price { Faker::Number.number(4) }
   end
 
 end
