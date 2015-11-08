@@ -15,14 +15,14 @@ class Auction < ActiveRecord::Base
     self.bids.find_by(user: user).present?
   end
 
-  scope :over_deadline_date, -> { where("deadline_date < ?", Time.now) }
+  scope :over_deadline_date, -> { where("deadline_date < ?", Time.current) }
 
   scope :open, -> { where(closed: false).order(deadline_date: :desc) }
   scope :closed, -> { where(closed: true).order(deadline_date: :desc) }
 
   # オークションを終了する（締め処理）
   def close!
-    if self.deadline_date < Time.now
+    if self.deadline_date < Time.current
       unless self.closed
         # オークションはまだ終了していない。締め処理開始
         max_bid = self.bids.max_by { |b| b.price }
