@@ -3,9 +3,11 @@ class Auction < ActiveRecord::Base
   belongs_to :product
 
   has_many :bids
-  has_one :successful_bid, class_name: "Bid", foreign_key: :id
+  has_one :successful_bid, class_name: "Bid", primary_key: :successful_bid_id, foreign_key: :id
 
   validates_presence_of :user_id, :product_id, :name, :min_price, :deadline_date
+
+  before_update :check_deadline_date_and_set_closed_if_needed
 
   def short_description
     self.description.each_line.first
@@ -53,6 +55,21 @@ class Auction < ActiveRecord::Base
     self.over_deadline_date.open.each do |auction|
       auction.close!
     end
+  end
+
+  def check_deadline_date_and_set_closed_if_needed
+    if self.deadline_date < Time.current
+      self.closed = true
+    else
+      self.closed = false if self.can_reopen?
+      true
+    end
+  end
+
+  # 既に一度クローズされているオークションを再オープンする場合のチェック
+  # 落札がなければ再オープンできる
+  def can_reopen?
+    self.closed && self.successful_bid.nil?
   end
 
 end
