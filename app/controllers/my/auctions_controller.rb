@@ -16,24 +16,27 @@ class My::AuctionsController < My::ApplicationController
   def create
     @auction = current_user.auctions.new(auction_params)
     if @auction.save
-      redirect_to my_auctions_path, notice: '出品登録しました。'
+      redirect_to my_auctions_path, notice: 'オークション出品登録しました。'
     else
-      redirect_to my_auctions_path, alert: '出品登録出来ませんでした。'
+      redirect_to my_auctions_path, alert: 'オークション出品登録出来ませんでした。'
     end
   end
 
   def update
     if @auction.update(auction_params)
-      redirect_to my_auctions_path, notice: '出品情報を更新しました。'
+      redirect_to my_auctions_path, notice: 'オークション出品情報を更新しました。'
     else
-      redirect_to my_auctions_path, alert: '出品情報を更新出来ませんでした。'
+      redirect_to my_auctions_path, alert: 'オークション出品情報を更新出来ませんでした。'
     end
   end
 
   def destroy
-    # TODO: bitds がある場合削除不可
-    @auction.destroy
-    redirect_to my_auctions_path, notice: '出品情報を削除しました。'
+    if @auction.bids.empty?
+      @auction.destroy
+      redirect_to my_auctions_path, notice: 'オークション出品情報を削除しました。'
+    else
+      redirect_to my_auctions_path, alert: '既に入札されています。オークション出品情報を削除できません。'
+    end
   end
 
   private
