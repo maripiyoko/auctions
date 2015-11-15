@@ -10,6 +10,9 @@
 
   .panel-body
     = simple_format(@auction.description)
+  %ul.list-group
+    %li.list-group-item= "出品者：#{@auction.user.name}"
+    %li.list-group-item= "最低入札価格：#{@auction.min_price}円"
 
   .panel-footer
     = "オークション締切日：#{@auction.deadline_date}"
