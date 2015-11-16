@@ -6,6 +6,8 @@ class Bid < ActiveRecord::Base
   validates_presence_of :user_id, :auction_id, :price
   validates_numericality_of :price, only_integer: true, greater_than_or_equal_to: 0, less_than: 1_000_000
 
+  before_save :acceptable_price?
+
 
   def acceptable_price?
     if self.auction.min_price < self.price
