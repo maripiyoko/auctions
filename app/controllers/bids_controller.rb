@@ -15,7 +15,7 @@ class BidsController < ApplicationController
     @bid = current_user.bids.new(bid_params)
     @bid.auction = @auction
     respond_to do |format|
-      if @bid.acceptable_price? && @bid.save
+      if @bid.save
         flash[:notice] = '入札しました。'
         format.html { redirect_to @auction }
         format.js { render js: "window.location = '#{auction_path(@auction)}'" }
