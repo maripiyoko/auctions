@@ -32,14 +32,16 @@
   - if user_signed_in?
     .row
       .col-sm-6.col-sm-push-3
-        - if @auction.bidder?(current_user)
-          = link_to auction_bid_path(@auction), method: :delete, class: "btn btn-large- btn-block btn-danger" do
-            %i.glyphicon.glyphicon-remove-sign
-            %span 入札を取り消す
-        - else
-          = link_to new_auction_bid_path(@auction), class: "btn btn-large btn-block btn-success", remote: true do
-            %i.glyphicon.glyphicon-plus-sign
-            %span 入札する
+        -###完了しているオークションは編集できないようにしました
+        - unless @auction.complete?
+          - if @auction.bidder?(current_user)
+            = link_to auction_bid_path(@auction), method: :delete, class: "btn btn-large- btn-block btn-danger" do
+              %i.glyphicon.glyphicon-remove-sign
+              %span 入札を取り消す
+          - else
+            = link_to new_auction_bid_path(@auction), class: "btn btn-large btn-block btn-success", remote: true do
+              %i.glyphicon.glyphicon-plus-sign
+              %span 入札する
 
 %h3 現在までの入札状況
 
