@@ -10,15 +10,13 @@ class Bid < ActiveRecord::Base
 
 
   def acceptable_price?
-    if self.auction.min_price < self.price
-      true
-    else
+    unless self.auction.min_price < self.price
       self.errors.add(:price, '入札金額が低すぎます。')
-      false
     end
+    self.auction.min_price < self.price
   end
 
-  scope :successful, -> { joins(:auction).merge(Auction.closed) }
+  scope :successful, -> { joins(:auction).merge(Auction.close_items) }
 
   scope :user, -> (user) { where(user: user) }
 end
