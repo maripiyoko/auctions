@@ -31,6 +31,7 @@ gem 'seed-fu'
 gem 'gretel'
 gem 'carrierwave'
 gem 'fog'
+gem 'net-ssh'
 
 group :development, :test do
   gem 'byebug'
