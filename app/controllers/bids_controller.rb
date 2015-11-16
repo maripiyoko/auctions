@@ -14,14 +14,18 @@ class BidsController < ApplicationController
   def create
     @bid = current_user.bids.new(bid_params)
     @bid.auction = @auction
-    if @bid.acceptable_price?
-      if @bid.save
-        redirect_to @auction, notice: '入札しました。'
+    respond_to do |format|
+      if @bid.acceptable_price? && @bid.save
+        flash[:notice] = '入札しました。'
+        format.html { redirect_to @auction }
+        format.js { render js: "window.location = '#{auction_path(@auction)}'" }
       else
-        redirect_to @auction, alert: '入札出来ませんでした。'
+        @bid.errors.each do |name, msg|
+          flash.now[name] = msg
+        end
+        format.html { redirect_to @auction }
+        format.js { render partial: "layouts/message", status: :unprocessable_entity }
       end
-    else
-      redirect_to @auction, alert: '入札金額が低すぎます。'
     end
   end
 
