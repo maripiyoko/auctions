@@ -4,8 +4,8 @@ FactoryGirl.define do
     description { Faker::Lorem::paragraph }
     association :user
     association :product
-    min_price { Faker::Number::number(4) }
-    deadline_date { Faker::Date::between(2.days.ago, Date.today) }
+    min_price 100
+    deadline_date { Faker::Date::between(Date.today, Date.tomorrow.noon) }
   end
 
 end
