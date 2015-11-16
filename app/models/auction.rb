@@ -7,7 +7,8 @@ class Auction < ActiveRecord::Base
 
   validates_presence_of :user_id, :product_id, :name, :min_price, :deadline_date
 
-  before_update :check_deadline_date_and_set_closed_if_needed
+  before_save :close_auction_if_needed
+  before_update :reopen_if_needed
 
   def short_description
     self.description.each_line.first
@@ -22,8 +23,14 @@ class Auction < ActiveRecord::Base
   scope :open, -> { where(closed: false).order(deadline_date: :desc) }
   scope :closed, -> { where(closed: true).order(deadline_date: :desc) }
 
+  def self.close_all_over_deadline_auctions!
+    self.over_deadline_date.open.each do |auction|
+      auction.save
+    end
+  end
+
   # オークションを終了する（締め処理）
-  def close!
+  def close_auction_if_needed
     if self.deadline_date < Time.current
       unless self.closed
         # オークションはまだ終了していない。締め処理開始
@@ -35,11 +42,17 @@ class Auction < ActiveRecord::Base
       end
       # オークション終了
       self.closed = true
-      pp 'オークション終了！'
-      self.save!
-      true
     end
-    false
+    true
+  end
+
+  # 既に一度クローズされているオークションを再オープンする場合のチェック
+  # 落札がなければ再オープンできる
+  def reopen_if_needed
+    if self.deadline_date > Time.current && self.closed && self.successful_bid.nil?
+      self.closed = false
+    end
+    true
   end
 
   def max_bid_price
@@ -49,27 +62,6 @@ class Auction < ActiveRecord::Base
     else
       0
     end
-  end
-
-  def self.close_all_over_deadline_auctions!
-    self.over_deadline_date.open.each do |auction|
-      auction.close!
-    end
-  end
-
-  def check_deadline_date_and_set_closed_if_needed
-    if self.deadline_date < Time.current
-      self.closed = true
-    else
-      self.closed = false if self.can_reopen?
-      true
-    end
-  end
-
-  # 既に一度クローズされているオークションを再オープンする場合のチェック
-  # 落札がなければ再オープンできる
-  def can_reopen?
-    self.closed && self.successful_bid.nil?
   end
 
 end
