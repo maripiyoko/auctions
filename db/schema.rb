@@ -11,26 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107234209) do
+ActiveRecord::Schema.define(version: 20151116134500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "auctions", force: :cascade do |t|
-    t.string   "name",                              null: false
+    t.string   "name",          null: false
     t.text     "description"
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "min_price"
     t.datetime "deadline_date"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.integer  "successful_bid_id"
-    t.boolean  "closed",            default: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "auctions", ["product_id"], name: "index_auctions_on_product_id", using: :btree
-  add_index "auctions", ["successful_bid_id"], name: "index_auctions_on_successful_bid_id", using: :btree
   add_index "auctions", ["user_id"], name: "index_auctions_on_user_id", using: :btree
 
   create_table "bids", force: :cascade do |t|
