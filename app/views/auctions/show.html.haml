@@ -17,7 +17,7 @@
   .panel-footer
     = "オークション締切日：#{@auction.deadline_date}"
 
-- if @auction.closed
+- if @auction.closed?
   .row
     .col-sm-12
       %h3 落札者からの評価

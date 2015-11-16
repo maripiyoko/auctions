@@ -1,6 +1,6 @@
-%tr{ class: auction.closed ? "warning" : "success" }
+%tr{ class: auction.closed? ? "warning" : "success" }
   %td
-    - if auction.closed
+    - if auction.closed?
       %i.glyphicon.glyphicon-ok
       %span 終了
     - else
