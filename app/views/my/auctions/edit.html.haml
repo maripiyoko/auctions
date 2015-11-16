@@ -1,3 +1,7 @@
-%h3="#{@auction.name} の出品情報を更新"
-
-= render 'form'
+-###完了しているオークションは編集できないようにしました
+- if @auction.complete?
+  %h3="#{@auction.name}"
+  このオークションは完了しています
+- else
+  %h3="#{@auction.name} の出品情報を更新"
+  = render 'form'

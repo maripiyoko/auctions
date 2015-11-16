@@ -30,7 +30,7 @@ gem 'enumerize'
 gem 'seed-fu'
 gem 'gretel'
 gem 'carrierwave'
-gem 'fog'
+gem 'fog', '1.23.0'
 
 group :development, :test do
   gem 'byebug'

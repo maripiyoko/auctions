@@ -14,6 +14,7 @@ class BidsController < ApplicationController
   def create
     @bid = current_user.bids.new(bid_params)
     @bid.auction = @auction
+    ### acceptable_price? をvalidateにしてmodelに移せばスッキリしそうです。
     if @bid.acceptable_price?
       if @bid.save
         redirect_to @auction, notice: '入札しました。'
