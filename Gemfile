@@ -40,6 +40,7 @@ group :development, :test do
   gem 'thin'
 
   gem 'faker'
+  gem 'timecop'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'email_spec'
