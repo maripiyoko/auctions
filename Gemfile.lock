@@ -106,6 +106,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.5.0)
       i18n (~> 0.5)
+    faraday (0.9.2)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.10)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -295,6 +297,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.8.2)
     multi_json (1.11.2)
+    multipart-post (2.0.0)
     nenv (0.2.0)
     net-ssh (3.0.1)
     nokogiri (1.6.6.2)
@@ -399,6 +402,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    sentry-raven (2.1.2)
+      faraday (>= 0.7.6, < 0.10.x)
     sexp_processor (4.6.0)
     shellany (0.0.1)
     simple_form (3.2.0)
@@ -490,6 +495,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   seed-fu
   selenium-webdriver
+  sentry-raven
   simple_form
   spring
   squeel
