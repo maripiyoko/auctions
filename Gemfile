@@ -66,3 +66,5 @@ end
 gem 'rails_12factor', group: :production
 
 gem 'sentry-raven'
+
+gem 'google-analytics-rails'
