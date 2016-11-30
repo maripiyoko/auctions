@@ -37,7 +37,6 @@ group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'thin'
 
   gem 'faker'
   gem 'timecop'
@@ -61,6 +60,13 @@ group :development do
   gem 'rails_layout'
 
   gem 'spring'
+end
+
+group :production do
+  gem 'puma'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
 end
 
 gem 'rails_12factor', group: :production
