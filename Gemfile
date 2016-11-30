@@ -63,6 +63,13 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'puma'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+end
+
 gem 'rails_12factor', group: :production
 
 gem 'sentry-raven'
