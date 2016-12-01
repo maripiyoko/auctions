@@ -5,8 +5,10 @@ threads threads_count, threads_count
 preload_app!
 
 rackup      DefaultRackup
-port        ENV['PORT']     || 3000
-environment ENV['RACK_ENV'] || 'development'
+environment ENV['RACK_ENV'] || 'production'
+
+bind "unix:///var/www/auctions/tmp/sockets/puma.sock"
+pidfile "tmp/pids/server.pid"
 
 on_worker_boot do
   # Worker specific setup for Rails 4.1+
