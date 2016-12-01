@@ -6,7 +6,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-
+server 'auctions', roles: %w{web app db}
 
 
 # role-based syntax
@@ -17,7 +17,7 @@
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-role :app, %w{auctions@localhost} #, my_property: :my_value
+#role :app, %w{auctions@localhost} #, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
 

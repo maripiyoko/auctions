@@ -16,7 +16,10 @@ require "capistrano/deploy"
 #   https://github.com/capistrano/passenger
 #
 # require 'capistrano/rvm'
-# require 'capistrano/rbenv'
+require 'capistrano/rbenv'
+set :rbenv_custom_path, '/home/auctions/.rbenv/'
+set :rbenv_type, :system # :system or :user
+set :rbenv_ruby, '2.2.2'
 # require 'capistrano/chruby'
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'
