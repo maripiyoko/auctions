@@ -66,6 +66,7 @@ group :production do
   gem 'puma'
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'capistrano3-puma'
 end
 
