@@ -4,7 +4,8 @@ lock '3.6.1'
 set :application, 'auctions'
 set :repo_url, 'git@github.com:maripiyoko/auctions.git'
 set :branch, ENV.fetch('branch', :master)
-set :deploy_to, '/var/www/${fetch(:application)}'
+set :deploy_to, '/var/www/auctions'
+
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
